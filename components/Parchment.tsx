@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 
-const defaultMessage = `Happy holidays! Here's a gift`;
+const defaultMessage = (games: unknown[] = []) =>
+  `Here's a little gift to brighten your day, ${games.length} mystery Steam games.  Who know what they could be? Redeem and see.`;
 
 export interface ParchmentProps extends React.HTMLProps<HTMLDivElement> {
   recipient?: string;
@@ -102,7 +103,7 @@ const Parchment = forwardRef<HTMLDivElement, ParchmentProps>(({ recipient, messa
         <foreignObject x='20%' y='10%' width='60%' height='80%' xmlns='http://www.w3.org/1999/xhtml'>
           <div className='content'>
             {recipient && <div className='recipient'>{recipient},</div>}
-            <div className='message'>{message || defaultMessage}</div>
+            <div className='message'>{message || defaultMessage(games)}</div>
             {games && games.length > 0 && (
               <div className='games-wrapper'>
                 <div className='games'>

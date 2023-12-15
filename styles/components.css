@@ -265,11 +265,11 @@ h1 span {
 
 .parchment .recipient {
 	font-size: 70px;
-  padding: 40px 0;
+  padding: 30px 0;
 }
 
 .parchment .message {
-	font-size: 60px;
+	font-size: 50px;
 }
 
 .parchment .games-wrapper {
@@ -305,6 +305,7 @@ h1 span {
 	font-size: 50px;
 	text-align: right;
 	margin-right: 50px;
+	margin-top: 20px;
 }
 
 /* Grid elements transforms */
