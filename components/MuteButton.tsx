@@ -11,7 +11,14 @@ const MuteButton = forwardRef<HTMLButtonElement, MuteButtonProps>(({ muted, onCh
   }, [muted, onChange]);
 
   return (
-    <button className='mute' {...props} type='button' onClick={handleToggle} ref={ref}>
+    <button
+      className='mute'
+      {...props}
+      type='button'
+      title={muted ? 'Unmute' : 'Mute'}
+      onClick={handleToggle}
+      ref={ref}
+    >
       {!muted ? (
         <svg
           fill='#000000'
