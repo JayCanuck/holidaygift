@@ -158,7 +158,7 @@ export default function Home() {
       if (step === 1) {
         (document.getElementById('wrapping-rustle') as HTMLAudioElement).volume = 0.5;
         (document.getElementById('wrapping-rustle') as HTMLAudioElement)?.play();
-        setTimeout(() => (document.getElementById('box-opening') as HTMLAudioElement)?.play(), 700);
+        setTimeout(() => (document.getElementById('box-opening') as HTMLAudioElement)?.play(), 650);
       }
 
       if (step === 2) {
