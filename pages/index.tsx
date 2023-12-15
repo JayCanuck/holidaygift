@@ -78,7 +78,6 @@ export default function Home() {
   const [games, setGames] = useState<Game[]>();
 
   const handleMute = useCallback((value: boolean) => {
-    console.log('changing muted to', value);
     setMuted(value);
 
     document.querySelectorAll('audio').forEach(ele => {
@@ -152,7 +151,6 @@ export default function Home() {
 
   const runAnimation = useCallback(
     (step: number) => {
-      console.log('step', step);
       incStep(step);
 
       if (step === 1) {
@@ -170,10 +168,9 @@ export default function Home() {
       }
 
       if (step === 4) {
+        (document.getElementById('bell') as HTMLAudioElement).volume = 0.1;
+        setTimeout(() => (document.getElementById('bell') as HTMLAudioElement)?.play(), 1000);
         if (fetchRes.current) {
-          (document.getElementById('bell') as HTMLAudioElement).volume = 0.1;
-          setTimeout(() => (document.getElementById('bell') as HTMLAudioElement)?.play(), 1000);
-          console.log('games data exists, so queue step 5');
           messageIfReady(() => setTimeout(runAnimation, stepTimes[4], 5));
         }
 
@@ -200,14 +197,12 @@ export default function Home() {
 
     if (id) {
       // fetch gift details in background while animation runs
-      console.log('fetching data...');
       fetch(`/api/games?id=${id}`)
         .then(res => res.json())
         .then((details: { name?: string; games: Game[] }) => {
           fetchRes.current = details;
           if (details.name) setName(details.name);
           setGames(details.games);
-          console.log('fetched data');
           messageIfReady(() => setTimeout(runAnimation, stepTimes[4], 5));
         })
         .catch(err => {
