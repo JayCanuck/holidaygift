@@ -42,15 +42,15 @@ h1 span {
 
 .merrywrap {
 	position: absolute;
-	top: 40px;
-	bottom: 40px;
-	left: 40px;
-	right: 40px;
+	inset: 40px;
 }
 
-.merrywrap svg path,
-.merrywrap svg polygon,
-.merrywrap svg circle {
+.merrywrap .background svg path,
+.merrywrap .icons svg path,
+.merrywrap .background svg polygon,
+.merrywrap .icons svg polygon,
+.merrywrap .background svg circle,
+.merrywrap .icons svg circle {
 	fill: none;
 }
 
@@ -212,6 +212,80 @@ h1 span {
 .background svg path {
 	stroke: #fdc56d;
 	stroke-width: 0.8;
+}
+
+.parchment {
+	position: absolute;
+	inset: -35px;
+	bottom: calc(20% - 35px);
+	opacity: 0;
+	z-index: -1;
+	-webkit-transition: opacity 1.5s;
+	transition: opacity 1.5s;
+}
+
+.parchment-inner {
+	position: absolute;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 500px;
+	width: 500px;
+	inset: 0;
+	margin: auto;
+	min-width: 50%;
+	max-width: 100%;
+	min-height: 50%;
+	max-height: 100%;
+}
+
+.parchment .content {
+	user-select: none;
+}
+
+.parchment .recipient {
+	font-size: 70px;
+  padding: 40px 0;
+}
+
+.parchment .message {
+	font-size: 60px;
+}
+
+.parchment .games-wrapper {
+	text-align: center;
+}
+
+.parchment .games {
+	display: inline-block;
+	background-color: rgb(50, 50, 50);
+	border-radius: 20px;
+	font-size: 50px;
+	padding: 20px;
+	font-family: monospace;
+	white-space: pre;
+	margin: 20px;
+}
+
+.parchment .code {
+	display: block;
+	border: 0;
+	background-color: transparent;
+	text-align: center;
+	color: lightgray;
+	margin: 10px 0;
+}
+
+.parchment .code:focus {
+	outline: none;
+}
+
+.parchment .signature {
+	font-style: italic;
+	font-size: 50px;
+	text-align: right;
+	margin-right: 50px;
 }
 
 /* Grid elements transforms */
@@ -1126,6 +1200,20 @@ h1 span {
 	animation-duration: 0.7s;
 }
 
+/* Step 5 */
+
+/*.merrywrap.step-5  {
+	inset: 5px;
+	bottom: 20%;
+}*/
+
+.step-5 .parchment {
+	opacity: 1;
+	z-index: 100;
+}
+
+/* Keyframes */
+
 @-webkit-keyframes wobble {
 	25% { -webkit-transform: rotate(4deg); }
 	75% { -webkit-transform: rotate(-2deg); }
@@ -1155,6 +1243,8 @@ h1 span {
 	75% { opacity: 1;}
 	100% { transform: translateY(100%); opacity: 0;}
 }
+
+/* Media queries */
 
 @media screen and (min-height: 50em) {
 	.icons span.letter {

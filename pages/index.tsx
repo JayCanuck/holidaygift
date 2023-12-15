@@ -17,6 +17,7 @@ import { useCallback, useRef, useState } from 'react';
 import Background from '@/components/Background';
 import Giftbox from '@/components/Giftbox';
 import Icons from '@/components/Icons';
+import Parchment from '@/components/Parchment';
 import Snowfall from '@/components/Snowfall';
 
 interface Game {
@@ -52,9 +53,8 @@ function shuffle<T = unknown>(array: T[]) {
 export default function Home() {
   const ref = useRef<HTMLDivElement>(null);
   const [snowActive, setSnowActive] = useState(false);
-  const [msgActive, setMsgActive] = useState(false);
   const [name, setName] = useState<string>();
-  const [games, setGames] = useState<Game[]>();
+  const [games, setGames] = useState<Game[]>([]);
 
   const incStep = useCallback((step: number) => {
     if (!ref.current) return;
@@ -96,7 +96,6 @@ export default function Home() {
       incStep(step);
 
       if (step === 5) {
-        setMsgActive(true);
         return;
       }
 
@@ -111,11 +110,11 @@ export default function Home() {
             if (details.name) setName(details.name);
             setGames(details.games);
             if (ref.current) {
-              /*const bg = ref.current.querySelector<HTMLDivElement>('div.background');
+              const bg = ref.current.querySelector<HTMLDivElement>('div.background');
               if (bg) {
-                bg.style.webkitTransition = 'opacity 0.6s';
-                bg.style.transition = 'opacity 0.6s';
-              }*/
+                bg.style.webkitTransition = 'opacity 0.5s';
+                bg.style.transition = 'opacity 0.5s';
+              }
               ref.current.querySelectorAll<HTMLSpanElement>('span.letter').forEach(letter => {
                 letter.style.opacity = '0';
               });
@@ -145,8 +144,6 @@ export default function Home() {
     runAnimation(1);
   }, [runAnimation]);
 
-  console.log({ active: msgActive, name, games });
-
   return (
     <>
       <Head>
@@ -161,6 +158,7 @@ export default function Home() {
           <Giftbox onClick={giftClicked} />
           <Icons />
           <Background />
+          <Parchment recipient={name} games={games} />
         </div>
       </div>
     </>
