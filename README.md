@@ -1,13 +1,9 @@
 # holidaygift
-Basic cute holiday gift webpage for the holidays, providing redeemable game code keys for specific users. Based on https://tympanus.net/codrops/2013/12/24/merry-christmas-with-a-bursting-gift-box/
+I like to do cute surprises for friends around the holidays. For 2023, I decided to make a customized holiday gift website, which can provide customized message for predefined recipients as well as distribute preconfigured Steam game redeemable codes. Realistically, this also ended up as a fun testbed example single-page Next.js webapp.
 
-Realistically, also a testbed example single-page Next.js webapp.
+## Local development
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
+Run the development server:
 
 ```bash
 npm run dev
@@ -21,21 +17,17 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# License
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Based on code  originally by Codrops https://tympanus.net/codrops/2013/12/24/merry-christmas-with-a-bursting-gift-box/
+Copyright 2013, Codrops http://www.codrops.com
+Licensed under the MIT license.
+http://www.opensource.org/licenses/mit-license.php
 
-## Learn More
+Nextjs Typescript ES6 port by Jason Robitaille with alterations to suit game gifting purpose
+Copyright 2023, Jason Robitaille
+Updates licensed under the Apache-2.0 license.
+https://www.apache.org/licenses/LICENSE-2.0.txt
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Music "Festive Fireside" by Steve Oxen https://www.fesliyanstudios.com/royalty-free-music/download/festive-fireside/3153
+Sound effects by https://pixabay.com
