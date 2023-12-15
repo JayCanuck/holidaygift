@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Peralta&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Peralta&family=Sriracha&display=swap');
 
 /*
  * Based on code originally by Codrops
@@ -241,6 +241,8 @@ h1 span {
 	z-index: -1;
 	-webkit-transition: opacity 1.5s;
 	transition: opacity 1.5s;
+	font-family: 'Sriracha';
+	color: rgba(0,0,0,0.8);
 }
 
 .parchment-inner {
@@ -261,6 +263,7 @@ h1 span {
 
 .parchment .content {
 	user-select: none;
+	padding: 0 30px;
 }
 
 .parchment .recipient {
@@ -269,7 +272,8 @@ h1 span {
 }
 
 .parchment .message {
-	font-size: 50px;
+	font-size: 48px;
+	line-height: 60px;
 }
 
 .parchment .games-wrapper {
