@@ -17,6 +17,7 @@ import { useCallback, useRef, useState } from 'react';
 import Background from '@/components/Background';
 import Giftbox from '@/components/Giftbox';
 import Icons from '@/components/Icons';
+import MuteButton from '@/components/MuteButton';
 import Parchment from '@/components/Parchment';
 import Snowfall from '@/components/Snowfall';
 
@@ -28,6 +29,24 @@ interface Game {
 const inter = Inter({ subsets: ['latin'] });
 
 const stepTimes = [1000, 1000, 2000, 2000, 2000];
+
+// https://stackoverflow.com/questions/7451508/html5-audio-playback-with-fade-in-and-fade-out
+function audioVolumeIn(q: HTMLAudioElement, targetVolume: number) {
+  if (q.volume) {
+    let InT = 0;
+    let setVolume = targetVolume; // Target volume level for new song
+    let speed = 0.005; // Rate of increase
+    q.volume = InT;
+    let eAudio = setInterval(function () {
+      InT += speed;
+      q.volume = parseFloat(InT.toFixed(1));
+      if (parseFloat(InT.toFixed(1)) >= setVolume) {
+        clearInterval(eAudio);
+        //alert('clearInterval eAudio'+ InT.toFixed(1));
+      }
+    }, 50);
+  }
+}
 
 // http://stackoverflow.com/a/2450976
 function shuffle<T = unknown>(array: T[]) {
@@ -52,9 +71,20 @@ function shuffle<T = unknown>(array: T[]) {
 
 export default function Home() {
   const ref = useRef<HTMLDivElement>(null);
+  const [muted, setMuted] = useState(false);
   const [snowActive, setSnowActive] = useState(false);
+  const fetchRes = useRef<{ name?: string; games: Game[] }>();
   const [name, setName] = useState<string>();
-  const [games, setGames] = useState<Game[]>([]);
+  const [games, setGames] = useState<Game[]>();
+
+  const handleMute = useCallback((value: boolean) => {
+    console.log('changing muted to', value);
+    setMuted(value);
+
+    document.querySelectorAll('audio').forEach(ele => {
+      ele.muted = value;
+    });
+  }, []);
 
   const incStep = useCallback((step: number) => {
     if (!ref.current) return;
@@ -67,6 +97,18 @@ export default function Home() {
     }
     if (!ref.current.classList.contains(next)) {
       ref.current.classList.add(next);
+    }
+  }, []);
+
+  const getStep = useCallback(() => {
+    if (!ref.current) return;
+
+    for (let i = 0; i < ref.current.classList.length; i++) {
+      const className = ref.current.classList[i];
+
+      if (className.startsWith('step-')) {
+        return parseInt(className.replace('step-', ''));
+      }
     }
   }, []);
 
@@ -91,40 +133,49 @@ export default function Home() {
     });
   }, []);
 
+  const messageIfReady = useCallback(
+    (cb: () => void = () => {}) => {
+      if (ref.current && getStep() === 4) {
+        const bg = ref.current.querySelector<HTMLDivElement>('div.background');
+        if (bg) {
+          bg.style.webkitTransition = 'opacity 0.4s';
+          bg.style.transition = 'opacity 0.4s';
+        }
+        ref.current.querySelectorAll<HTMLSpanElement>('span.letter').forEach(letter => {
+          letter.style.opacity = '0';
+        });
+        cb();
+      }
+    },
+    [getStep]
+  );
+
   const runAnimation = useCallback(
     (step: number) => {
+      console.log('step', step);
       incStep(step);
+
+      if (step === 1) {
+        (document.getElementById('wrapping-rustle') as HTMLAudioElement).volume = 0.5;
+        (document.getElementById('wrapping-rustle') as HTMLAudioElement)?.play();
+        setTimeout(() => (document.getElementById('box-opening') as HTMLAudioElement)?.play(), 700);
+      }
+
+      if (step === 2) {
+        setTimeout(() => (document.getElementById('bg-music') as HTMLAudioElement)?.play(), 500);
+      }
 
       if (step === 5) {
         return;
       }
 
       if (step === 4) {
-        const params = new URLSearchParams(window.location.search);
-        let id = params.get('id');
-        if (id === '0') id = '00000000-0000-0000-0000-000000000000'; // shorthand debug uuid alias
-
-        fetch(`/api/games?id=${id}`)
-          .then(res => res.json())
-          .then((details: { name?: string; games: Game[] }) => {
-            if (details.name) setName(details.name);
-            setGames(details.games);
-            if (ref.current) {
-              const bg = ref.current.querySelector<HTMLDivElement>('div.background');
-              if (bg) {
-                bg.style.webkitTransition = 'opacity 0.5s';
-                bg.style.transition = 'opacity 0.5s';
-              }
-              ref.current.querySelectorAll<HTMLSpanElement>('span.letter').forEach(letter => {
-                letter.style.opacity = '0';
-              });
-            }
-            setTimeout(runAnimation, stepTimes[4], 5);
-          })
-          .catch(err => {
-            console.error(err);
-            setGames([]);
-          });
+        if (fetchRes.current) {
+          (document.getElementById('bell') as HTMLAudioElement).volume = 0.1;
+          setTimeout(() => (document.getElementById('bell') as HTMLAudioElement)?.play(), 1000);
+          console.log('games data exists, so queue step 5');
+          messageIfReady(() => setTimeout(runAnimation, stepTimes[4], 5));
+        }
 
         setSnowActive(true);
         return;
@@ -137,12 +188,34 @@ export default function Home() {
 
       setTimeout(runAnimation, stepTimes[step - 1], step + 1);
     },
-    [incStep, setGridDelays]
+    [incStep, messageIfReady, setGridDelays]
   );
 
   const giftClicked = useCallback(() => {
+    const params = new URLSearchParams(window.location.search);
+    let id = params.get('id');
+    if (id === '0') id = '00000000-0000-0000-0000-000000000000'; // shorthand debug uuid alias
+
     runAnimation(1);
-  }, [runAnimation]);
+
+    if (id) {
+      // fetch gift details in background while animation runs
+      console.log('fetching data...');
+      fetch(`/api/games?id=${id}`)
+        .then(res => res.json())
+        .then((details: { name?: string; games: Game[] }) => {
+          fetchRes.current = details;
+          if (details.name) setName(details.name);
+          setGames(details.games);
+          console.log('fetched data');
+          messageIfReady(() => setTimeout(runAnimation, stepTimes[4], 5));
+        })
+        .catch(err => {
+          console.error(err);
+          setGames(undefined);
+        });
+    }
+  }, [messageIfReady, runAnimation]);
 
   return (
     <>
@@ -153,6 +226,7 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div className={`container ${inter.className}`}>
+        <MuteButton muted={muted} onChange={handleMute} />
         <Snowfall active={snowActive} />
         <div className='merrywrap' ref={ref}>
           <Giftbox onClick={giftClicked} />
@@ -161,6 +235,16 @@ export default function Home() {
           <Parchment recipient={name} games={games} />
         </div>
       </div>
+      <audio id='wrapping-rustle' preload='auto' src='/wrapping-paper-rustle.mp3' />
+      <audio id='box-opening' preload='auto' src='/box-open.mp3' />
+      <audio id='bell' preload='auto' src='/bell.mp3' />
+      <audio
+        id='bg-music'
+        preload='auto'
+        loop
+        src='/piano-trio-mix-festive-fireside.mp3'
+        onPlay={ev => audioVolumeIn(ev.target as HTMLAudioElement, 0.5)}
+      />
     </>
   );
 }

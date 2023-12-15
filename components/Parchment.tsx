@@ -5,7 +5,7 @@ const defaultMessage = `Happy holidays! Here's a gift`;
 export interface ParchmentProps extends React.HTMLProps<HTMLDivElement> {
   recipient?: string;
   message?: string;
-  games: {
+  games?: {
     name: string;
     code: string;
   }[];
@@ -103,13 +103,21 @@ const Parchment = forwardRef<HTMLDivElement, ParchmentProps>(({ recipient, messa
           <div className='content'>
             {recipient && <div className='recipient'>{recipient},</div>}
             <div className='message'>{message || defaultMessage}</div>
-            <div className='games-wrapper'>
-              <div className='games'>
-                {games.map((game, i) => (
-                  <input key={`game-code-${i}-${game.code}`} className='code' type='text' value={game.code} readOnly />
-                ))}
+            {games && games.length > 0 && (
+              <div className='games-wrapper'>
+                <div className='games'>
+                  {games.map((game, i) => (
+                    <input
+                      key={`game-code-${i}-${game.code}`}
+                      className='code'
+                      type='text'
+                      value={game.code}
+                      readOnly
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
             <div className='message'>Hope you have a great holidays and a happy new year!</div>
             <div className='signature'>-Jay</div>
           </div>

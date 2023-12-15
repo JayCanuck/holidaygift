@@ -40,6 +40,25 @@ h1 span {
 	transform: skew(-20deg);
 }
 
+.mute {
+	background: transparent;
+	border-radius: 100%;
+	border-style: solid;
+	position: absolute;
+	z-index: 400;
+	top: 10px;
+	right: 10px;
+	width: 30px;
+	height: 30px;
+	border-width: 2px;
+	border-color: rgba(0,0,0,0.5);
+}
+
+.mute:active {
+	background: rgba(0,0,0,0.1);
+	outline: none;
+}
+
 .merrywrap {
 	position: absolute;
 	inset: 40px;
@@ -259,13 +278,13 @@ h1 span {
 
 .parchment .games {
 	display: inline-block;
-	background-color: rgb(50, 50, 50);
-	border-radius: 20px;
+	background-color: rgba(50, 50, 50, 0.2);
+	border-radius: 10px;
 	font-size: 50px;
 	padding: 20px;
 	font-family: monospace;
 	white-space: pre;
-	margin: 20px;
+	margin: 40px;
 }
 
 .parchment .code {
@@ -273,7 +292,7 @@ h1 span {
 	border: 0;
 	background-color: transparent;
 	text-align: center;
-	color: lightgray;
+	color: black;
 	margin: 10px 0;
 }
 
