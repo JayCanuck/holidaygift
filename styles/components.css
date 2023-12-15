@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Peralta&family=Sriracha&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Peralta&family=Sriracha&family=Signika&display=swap');
 
 /*
  * Based on code originally by Codrops
@@ -241,6 +241,7 @@ h1 span {
 	z-index: -1;
 	-webkit-transition: opacity 1.5s;
 	transition: opacity 1.5s;
+	/*font-family: 'Signika';*/
 	font-family: 'Sriracha';
 	color: rgba(0,0,0,0.8);
 }
@@ -274,6 +275,8 @@ h1 span {
 .parchment .message {
 	font-size: 48px;
 	line-height: 60px;
+	/*font-family: 'Signika';
+	font-weight: 600;*/
 }
 
 .parchment .games-wrapper {
