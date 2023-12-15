@@ -13,7 +13,7 @@
 
 import { Inter } from 'next/font/google';
 import Head from 'next/head';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Background from '@/components/Background';
 import Giftbox from '@/components/Giftbox';
 import Icons from '@/components/Icons';
@@ -79,6 +79,8 @@ export default function Home() {
 
   const handleMute = useCallback((value: boolean) => {
     setMuted(value);
+
+    window.localStorage.setItem('mute', JSON.stringify(value));
 
     document.querySelectorAll('audio').forEach(ele => {
       ele.muted = value;
@@ -211,6 +213,21 @@ export default function Home() {
         });
     }
   }, [messageIfReady, runAnimation]);
+
+  useEffect(() => {
+    try {
+      const value = window.localStorage.getItem('mute');
+      if (value) {
+        const parsed = JSON.parse(value);
+        setMuted(parsed);
+        document.querySelectorAll('audio').forEach(ele => {
+          ele.muted = parsed;
+        });
+      }
+    } catch (e) {
+      console.error('failed to load mute state from localstorage', e);
+    }
+  }, []);
 
   return (
     <>
