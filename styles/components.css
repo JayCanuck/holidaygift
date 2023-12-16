@@ -1306,3 +1306,10 @@ h1 span {
 		stroke-width: 3;
 	}
 }
+
+@media (hover: none) {
+  /* Non-mouse/touchscreen devices */
+	.giftbox::after {
+		content: 'Tap me';
+	}
+}
