@@ -244,7 +244,12 @@ export default function Home() {
           <Giftbox onClick={giftClicked} />
           <Icons />
           <Background />
-          <Parchment recipient={name} games={games} />
+          <Parchment
+            recipient={name}
+            games={games}
+            // easter egg: special styling for Dom as they liked that font
+            style={name === 'Dom' ? { fontFamily: "'Sriracha' !important" } : undefined}
+          />
         </div>
       </div>
       <audio id='wrapping-rustle' preload='auto' src='/wrapping-paper-rustle.mp3' />
