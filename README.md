@@ -64,15 +64,15 @@ User gifts can then be accessed via unique special `https://webserver/?id=<userI
 
 # License
 
-Based on code  originally by Codrops https://tympanus.net/codrops/2013/12/24/merry-christmas-with-a-bursting-gift-box/
-Copyright 2013, Codrops http://www.codrops.com
-Licensed under the MIT license.
+Based on code  originally by Codrops https://tympanus.net/codrops/2013/12/24/merry-christmas-with-a-bursting-gift-box/<br> 
+Copyright 2013, Codrops http://www.codrops.com<br> 
+Licensed under the MIT license.<br> 
 http://www.opensource.org/licenses/mit-license.php
 
-Nextjs Typescript ES6 port by Jason Robitaille with alterations to suit game gifting purpose
-Copyright 2023, Jason Robitaille
-Updates licensed under the Apache-2.0 license.
-https://www.apache.org/licenses/LICENSE-2.0.txt
+Nextjs Typescript ES6 port by Jason Robitaille with alterations to suit game gifting purpose<br> 
+Copyright 2023, Jason Robitaille<br> 
+Updates licensed under the Apache-2.0 license.<br> 
+https://www.apache.org/licenses/LICENSE-2.0.txt<br> 
 
-Music "Festive Fireside" by Steve Oxen https://www.fesliyanstudios.com/royalty-free-music/download/festive-fireside/3153
+Music "Festive Fireside" by Steve Oxen https://www.fesliyanstudios.com/royalty-free-music/download/festive-fireside/3153<br> 
 Sound effects by https://pixabay.com
