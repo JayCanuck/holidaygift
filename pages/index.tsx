@@ -12,7 +12,7 @@
  */
 
 import Head from 'next/head';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { SyntheticEvent, useCallback, useEffect, useRef, useState } from 'react';
 import Background from '@/components/Background';
 import Giftbox from '@/components/Giftbox';
 import Icons from '@/components/Icons';
@@ -65,6 +65,13 @@ function shuffle<T = unknown>(array: T[]) {
 
   return array;
 }
+
+const ensureRustlingStopped = () => {
+  (document.getElementById('wrapping-rustle') as HTMLAudioElement)?.pause();
+};
+
+const fadeInBgAudio = (ev: SyntheticEvent<HTMLAudioElement, Event>) =>
+  audioVolumeIn(ev.target as HTMLAudioElement, 0.5);
 
 export default function Home() {
   const ref = useRef<HTMLDivElement>(null);
@@ -253,15 +260,9 @@ export default function Home() {
         </div>
       </div>
       <audio id='wrapping-rustle' preload='auto' src='/wrapping-paper-rustle.mp3' />
-      <audio id='box-opening' preload='auto' src='/box-open.mp3' />
+      <audio id='box-opening' preload='auto' src='/box-open.mp3' onPlay={ensureRustlingStopped} />
       <audio id='bell' preload='auto' src='/bell.mp3' />
-      <audio
-        id='bg-music'
-        preload='auto'
-        loop
-        src='/piano-trio-mix-festive-fireside.mp3'
-        onPlay={ev => audioVolumeIn(ev.target as HTMLAudioElement, 0.5)}
-      />
+      <audio id='bg-music' preload='auto' loop src='/piano-trio-mix-festive-fireside.mp3' onPlay={fadeInBgAudio} />
     </>
   );
 }
