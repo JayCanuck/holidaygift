@@ -237,10 +237,6 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <style jsx global>{`
-        /* @import url('https://fonts.googleapis.com/css2?family=Peralta&family=Sriracha&family=Signika&family=Amaranth&family=Acme&display=swap'); */
-        @import url('https://fonts.googleapis.com/css2?family=Peralta&family=Sriracha&family=Amaranth&display=swap');
-      `}</style>
       <div className={`container ${inter.className}`}>
         <MuteButton muted={muted} onChange={handleMute} />
         <Snowfall active={snowActive} />
