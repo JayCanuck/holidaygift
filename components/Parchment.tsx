@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 
 const defaultMessage = (games: unknown[] = []) =>
-  `Here's a little gift to brighten your day, ${games.length} mystery Steam games.  Who know what they could be? Redeem and see.`;
+  `Here's a little gift to brighten your day, ${games.length} mystery Steam games.  Who knows what they could be? Redeem and see.`;
 
 export interface ParchmentProps extends React.HTMLProps<HTMLDivElement> {
   recipient?: string;
