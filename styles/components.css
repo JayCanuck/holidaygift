@@ -56,6 +56,13 @@ h1 span {
 	height: 30px;
 	border-width: 2px;
 	border-color: rgba(0,0,0,0.5);
+	/* normization compatability with my ipad which seemed to need this: */
+	margin:0;
+	padding: 0;
+	padding-block-end: 1px;
+	padding-block-start: 1px;
+	padding-inline-end: 6px;
+	padding-inline-start: 6px;
 }
 
 .mute:active {
