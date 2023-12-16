@@ -4,6 +4,7 @@ import { sendError } from 'next/dist/server/api-utils';
 
 interface GiftDetails {
   name?: string;
+  message?: string;
   games: {
     name: string;
     code: string;

@@ -72,6 +72,7 @@ export default function Home() {
   const [snowActive, setSnowActive] = useState(false);
   const fetchRes = useRef<{ name?: string; games: Game[] }>();
   const [name, setName] = useState<string>();
+  const [message, setMessage] = useState<string>();
   const [games, setGames] = useState<Game[]>();
 
   const handleMute = useCallback((value: boolean) => {
@@ -198,9 +199,10 @@ export default function Home() {
       // fetch gift details in background while animation runs
       fetch(`/api/games?id=${id}`)
         .then(res => res.json())
-        .then((details: { name?: string; games: Game[] }) => {
+        .then((details: { name?: string; message?: string; games: Game[] }) => {
           fetchRes.current = details;
           if (details.name) setName(details.name);
+          if (details.message) setMessage(details.message);
           setGames(details.games);
           messageIfReady(() => setTimeout(runAnimation, stepTimes[4], 5));
         })
@@ -243,6 +245,7 @@ export default function Home() {
           <Background />
           <Parchment
             recipient={name}
+            message={message}
             games={games}
             // easter egg: special styling for Dom as they liked that font
             style={name === 'Dom' ? { fontFamily: 'var(--font-sriracha) !important' } : undefined}
