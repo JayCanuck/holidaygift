@@ -1,15 +1,30 @@
+import type { AppProps } from 'next/app';
+import { Amaranth, Peralta, Sriracha } from 'next/font/google';
 import 'normalize.css';
 import '@/styles/components.css';
-import type { AppProps } from 'next/app';
+
+const amaranth = Amaranth({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-amaranth'
+});
+
+const peralta = Peralta({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-peralta'
+});
+
+const sriracha = Sriracha({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-sriracha'
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <style jsx global>{`
-        /* @import url('https://fonts.googleapis.com/css2?family=Peralta&family=Sriracha&family=Signika&family=Amaranth&family=Acme&display=swap'); */
-        @import url('https://fonts.googleapis.com/css2?family=Peralta&family=Sriracha&family=Amaranth&display=swap');
-      `}</style>
+    <main className={`${amaranth.variable} ${peralta.variable} ${sriracha.variable}`}>
       <Component {...pageProps} />
-    </>
+    </main>
   );
 }

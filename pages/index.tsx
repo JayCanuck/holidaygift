@@ -11,7 +11,6 @@
  * https://www.apache.org/licenses/LICENSE-2.0.txt
  */
 
-import { Inter } from 'next/font/google';
 import Head from 'next/head';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Background from '@/components/Background';
@@ -25,8 +24,6 @@ interface Game {
   name: string;
   code: string;
 }
-
-const inter = Inter({ subsets: ['latin'] });
 
 const stepTimes = [1000, 1000, 2000, 2000, 2000];
 
@@ -237,7 +234,7 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div className={`container ${inter.className}`}>
+      <div className='container'>
         <MuteButton muted={muted} onChange={handleMute} />
         <Snowfall active={snowActive} />
         <div className='merrywrap' ref={ref}>
@@ -248,7 +245,7 @@ export default function Home() {
             recipient={name}
             games={games}
             // easter egg: special styling for Dom as they liked that font
-            style={name === 'Dom' ? { fontFamily: "'Sriracha' !important" } : undefined}
+            style={name === 'Dom' ? { fontFamily: 'var(--font-sriracha) !important' } : undefined}
           />
         </div>
       </div>

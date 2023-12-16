@@ -11,6 +11,12 @@
  * https://www.apache.org/licenses/LICENSE-2.0.txt
  */
 
+ :root {
+	--font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
+    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
+    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+ }
+
 html, body, .container {
 	height: 100%;
 }
@@ -25,7 +31,7 @@ h1 {
 	bottom: 10px;
 	right: 15px;
 	color: #fff;
-	font-family: 'Peralta', serif;
+	font-family: var(--font-peralta), serif;
 	text-transform: uppercase;
 	font-size: 20px;
 	margin: 0;
@@ -86,7 +92,7 @@ h1 span {
 	content: 'Click me';
 	position: absolute;
 	color: #fff;
-	font-family: 'Peralta', serif;
+	font-family: var(--font-peralta), serif;
 	bottom: 0;
 	left: 0;
 	width: 100%;
@@ -195,7 +201,7 @@ h1 span {
 	float: left;
 	width: calc((100% / 11) - 1px);
 	height: 100%;
-	font-family: 'Peralta';
+	font-family: var(--font-peralta);
 	font-size: 74px;
 	text-transform: uppercase;
 	text-align: center;
@@ -239,11 +245,7 @@ h1 span {
 	z-index: -1;
 	-webkit-transition: opacity 1.5s;
 	transition: opacity 1.5s;
-	/* Some other fonts I tried out */
-	/*font-family: 'Signika';*/
-	/* font-family: 'Sriracha';*/
-	/* font-family: 'Acme';*/
-	font-family: 'Amaranth';
+	font-family: var(--font-amaranth);
 	color: rgba(0,0,0,0.8);
 }
 
@@ -288,7 +290,7 @@ h1 span {
 	border-radius: 10px;
 	font-size: 50px;
 	padding: 20px;
-	font-family: monospace;
+	font-family: var(--font-mono);
 	white-space: pre;
 	margin: 40px;
 }
