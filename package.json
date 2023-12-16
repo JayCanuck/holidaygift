@@ -2,6 +2,11 @@
   "name": "holidaygift",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Jason Robitaille",
+    "url": "https://jrobitaille.dev"
+  },
+  "license": "Apache-2.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

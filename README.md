@@ -1,5 +1,8 @@
 # holidaygift
-I like to do cute surprises for friends around the holidays. For 2023, I decided to make a customized holiday gift website, which can provide customized message for predefined recipients as well as distribute preconfigured Steam game redeemable codes. Realistically, this also ended up as a fun testbed example single-page Next.js webapp.
+
+I like to do cute surprises for friends around the holidays. For 2023, I decided to make a customized holiday gift website, which can provide customized message for predefined recipients as well as distribute preconfigured Steam game redeemable codes.
+
+Realistically, this also ended up as a fun testbed example single-page Next.js webapp.
 
 ## Local development
 
@@ -64,15 +67,13 @@ User gifts can then be accessed via unique special `https://webserver/?id=<userI
 
 # License
 
-Based on code  originally by Codrops https://tympanus.net/codrops/2013/12/24/merry-christmas-with-a-bursting-gift-box/<br> 
+Based on code [originally by Codrops](https://tympanus.net/codrops/2013/12/24/merry-christmas-with-a-bursting-gift-box/)<br> 
 Copyright 2013, Codrops http://www.codrops.com<br> 
-Licensed under the MIT license.<br> 
-http://www.opensource.org/licenses/mit-license.php
+Licensed under the [MIT license](http://www.opensource.org/licenses/mit-license.php).<br> 
 
 Nextjs Typescript ES6 port by Jason Robitaille with alterations to suit game gifting purpose<br> 
 Copyright 2023, Jason Robitaille<br> 
-Updates licensed under the Apache-2.0 license.<br> 
-https://www.apache.org/licenses/LICENSE-2.0.txt<br> 
+Updates licensed under the [Apache-2.0 license](https://www.apache.org/licenses/LICENSE-2.0.txt).<br> 
 
-Music "Festive Fireside" by Steve Oxen https://www.fesliyanstudios.com/royalty-free-music/download/festive-fireside/3153<br> 
+Music ["Festive Fireside" by Steve Oxen](https://www.fesliyanstudios.com/royalty-free-music/download/festive-fireside/3153)<br> 
 Sound effects by https://pixabay.com
