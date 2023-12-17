@@ -1,4 +1,4 @@
-# holidaygift
+# HolidayGift greeting card/giftcode webapp
 
 I like to do cute surprises for friends around the holidays. For 2023, I decided to make a customized holiday gift website, which can provide customized message for predefined recipients as well as distribute preconfigured Steam game redeemable codes.
 
