@@ -255,7 +255,7 @@ export default function Home() {
             message={message}
             games={games}
             // easter egg: special styling for Dom as they liked that font
-            style={name === 'Dom' ? { fontFamily: 'var(--font-sriracha) !important' } : undefined}
+            style={name === 'Dom' ? { fontFamily: 'var(--font-sriracha)' } : undefined}
           />
         </div>
       </div>
