@@ -1,6 +1,6 @@
 # HolidayGift greeting card/giftcode webapp
 
-I like to do cute surprises for friends around the holidays. For 2023, I decided to make a customized holiday gift website, which can provide customized message for predefined recipients as well as distribute preconfigured Steam game redeemable codes.
+I like to do cute surprises for friends around the holidays. For 2023, I decided to make a quick-n-dirty customized holiday gift website, which can provide customized message for predefined recipients as well as distribute preconfigured Steam game redeemable codes.
 
 Realistically, this also ended up as a fun testbed example single-page Next.js webapp.
 
@@ -22,9 +22,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Environment Variable Setup
 
-This project is designed to use a JSON value stringified into `MYSTERY` environment variable.
+This project is designed to use 2 environment variables, `NEXT_PUBLIC_PARCHMENT_SVG` and `MYSTERY`.
 
-For reference, this is the generally-expected interface of the object:
+`NEXT_PUBLIC_PARCHMENT_SVG` is simply a string containing an SVG to be used as the parchment background for the gift messages.  It can be tailored to anything, though in my personal deployment I've use a papyrus sroll clipart SVG from [EmilTimplaru's Etsy shop](https://www.etsy.com/listing/955287962/papyrus-scroll-clipart-vector-design) as I liked that style.
+
+Secondly, there's a backend-only `MYSTERY` environment variable containing a stringified JSON value containing gift game codes and personalized metadata. This is the expected interface for the object:
 
 ```ts
 interface MysteryObject {
