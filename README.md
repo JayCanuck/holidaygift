@@ -24,7 +24,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 This project is designed to use 2 environment variables, `NEXT_PUBLIC_PARCHMENT_SVG` and `MYSTERY`.
 
-`NEXT_PUBLIC_PARCHMENT_SVG` is simply a string containing an SVG to be used as the parchment background for the gift messages.  It can be tailored to anything, though in my personal deployment I've use a papyrus sroll clipart SVG from [EmilTimplaru's Etsy shop](https://www.etsy.com/listing/955287962/papyrus-scroll-clipart-vector-design) as I liked that style.
+`NEXT_PUBLIC_PARCHMENT_SVG` is simply a string containing an SVG to be used as the parchment background for the gift messages.  It can be tailored to anything, though in my personal deployment I've use a papyrus scroll clipart SVG from [EmilTimplaru's Etsy shop](https://www.etsy.com/listing/955287962/papyrus-scroll-clipart-vector-design) as I liked that style.
 
 Secondly, there's a backend-only `MYSTERY` environment variable containing a stringified JSON value containing gift game codes and personalized metadata. This is the expected interface for the object:
 
@@ -63,7 +63,7 @@ For example:
   }
 }
 ```
-Then stringify the JSON and store as a `MYSTERY` environment variable.
+Then stringify the JSON and store it as a `MYSTERY` environment variable.
 
 User gifts can then be accessed via unique special `https://webserver/?id=<userID>` URLs, while anyone visiting the webserver without the proper ID will just get a basic holiday greeting (no gift).
 
